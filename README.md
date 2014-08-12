@@ -14,8 +14,8 @@ But if you want something that sounds more legitimate: I want practice using
 Clojure's concurrency and parallel processing semantics.  That, and access to
 Java's GUI widget set makes it easier to render graphically than in other
 langauges and environments.  Granted, this will start life by emitting only
-text as output.  But I plan to get to the graphical output once I learn how to
-do that from Clojure.
+text as output, or writing to an uncompressed PNM file.  But I plan to get to
+the interactive graphical output once I learn how to do that from Clojure.
 
 "But Mandebrot set, on the JVM?  Won't it be horribly slow?", I can already
 hear you asking.  Maybe, but I don't care.  And frankly, I intend to prove that
