@@ -1,8 +1,16 @@
-(ns mandelbrojt.core (:gen-class))
+(ns mandelbrojt.core
+   (:require [clojure.pprint :refer [pprint]])
+   (:gen-class)  )
+
+(defn main-loop
+   [  [x-pixels y-pixels]
+      [  [x-min x-max]
+         [y-min y-max]  ]  ]
+   (for [  x (range x-pixels)
+           y (range y-pixels)  ]
+        [x y]  )  )
 
 (defn -main
-  "I don't do a whole lot ... yet."
-  [& args]
-  ;; work around dangerous default behaviour in Clojure
-  (alter-var-root #'*read-eval* (constantly false))
-  (println "Hello, World!"))
+   [& args]
+   (alter-var-root #'*read-eval* (constantly false)) ;; work around dangerous default behaviour in Clojure
+   (pprint (main-loop [3 3] [[-2 +2] [-2 +2]]))  )
