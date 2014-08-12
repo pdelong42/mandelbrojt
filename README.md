@@ -7,7 +7,10 @@ Why?
 ====
 
 So it's been done to death.  Why write yet another program to generate the
-Mandelbrot set?  Because I want to.  And because I want practice using
+Mandelbrot set?  Because I want to.  And because I like it.  What more reason
+do I need.
+
+But if you want something that sounds more legitimate: I want practice using
 Clojure's concurrency and parallel processing semantics.  That, and access to
 Java's GUI widget set makes it easier to render graphically than in other
 langauges and environments.  Granted, this will start life by emitting only
