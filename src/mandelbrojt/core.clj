@@ -2,7 +2,7 @@
    (:require [clojure.pprint :refer [pprint]])
    (:gen-class)  )
 
-(defn main-loop
+(defn main-body
    [  [x-pixels y-pixels]
       [  [x-min x-max]
          [y-min y-max]  ]  ]
@@ -13,4 +13,4 @@
 (defn -main
    [& args]
    (alter-var-root #'*read-eval* (constantly false)) ;; work around dangerous default behaviour in Clojure
-   (pprint (main-loop [3 3] [[-2 +2] [-2 +2]]))  )
+   (pprint (main-body [3 3] [[-2 +2] [-2 +2]]))  )
