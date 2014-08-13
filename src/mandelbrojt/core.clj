@@ -18,6 +18,24 @@
          :parse-fn #(Integer/parseInt %)
          :validate [integer? "not an integer"]
          :default 100  ]
+      [  "-x"
+         "--xorig REAL"
+         "`x` coordinate of center"
+         :parse-fn #(Double/parseDouble %)
+         :validate [float? "not a real"]
+         :default 0  ]
+      [  "-y"
+         "--yorig REAL"
+         "`y` coordinate of center"
+         :parse-fn #(Double/parseDouble %)
+         :validate [float? "not a real"]
+         :default 0  ]
+      [  "-r"
+         "--radius REAL"
+         "radius of the area we are rendering"
+         :parse-fn #(Double/parseDouble %)
+         :validate [float? "not a real"]
+         :default 2  ]
       [  "-H" "--help" "help"  ]  ]  )
 
 (defn usage
@@ -31,7 +49,7 @@
             options-summary  ]  )  )
    (System/exit exit-code)  )
 
-(defn render-area
+(defn render-rectangle
    [  [x-pixels y-pixels]
       [  [x-min x-max]
          [y-min y-max]  ]  ]
@@ -40,12 +58,12 @@
         [x y]  )  )
 
 (defn main-body
-   [  {  {:keys [width height help]} :options
+   [  {  {:keys [width height help radius xorig yorig]} :options
           :keys [arguments errors summary]  }  ]
    (if help   (usage 0 summary errors))
    (if errors (usage 1 summary errors))
    ; translate from input parameters to grid bounds
-   (render-area [2 2] [[-2 +2] [-2 +2]])  )
+   (render-rectangle [2 2] [[-2 +2] [-2 +2]])  )
 
 (defn -main
    [& args]
