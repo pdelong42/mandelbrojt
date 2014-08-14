@@ -49,6 +49,8 @@
             options-summary  ]  )  )
    (System/exit exit-code)  )
 
+(defn test-point [x y] true)
+
 (defn render-rectangle
    [  [x-pixels y-pixels]
       [  [x-min x-max]
@@ -61,7 +63,7 @@
       (for
          [  x-pixel (range x-pixels)
             y-pixel (range y-pixels)  ]
-         (printf "(%s %s)\n" (x-real x-pixel) (y-real y-pixel))  )  )  )
+         [x-pixel y-pixel (test-point (x-real x-pixel) (y-real y-pixel))]  )  )  )
 
 (defn main-body
    [  {  {:keys [width height help radius xorig yorig]} :options
@@ -91,4 +93,4 @@
 (defn -main
    [& args]
    (alter-var-root #'*read-eval* (constantly false)) ;; work around dangerous default behaviour in Clojure
-   (dorun (main-body (parse-opts args cli-options)))  )
+   (pprint (main-body (parse-opts args cli-options)))  )
