@@ -68,8 +68,25 @@
           :keys [arguments errors summary]  }  ]
    (if help   (usage 0 summary errors))
    (if errors (usage 1 summary errors))
-   ; ToDo: translate from input parameters to grid bounds
-   (render-rectangle [5 5] [[-2 +2] [-2 +2]])  )
+   ;;(render-rectangle [5 5] [[-2 +2] [-2 +2]])
+   (render-rectangle
+      [width height]
+      (let
+         [  minor (min width height)
+            major (max width height)
+            aspect (/ major minor)
+            apoapsis (* aspect radius)
+            periapsis radius  ]
+         (if
+            (< width height)
+            [  [  (- xorig periapsis)
+                  (+ xorig periapsis)  ]
+               [  (- yorig apoapsis)
+                  (+ yorig apoapsis)  ]  ]
+            [  [  (- xorig apoapsis)
+                  (+ xorig apoapsis)  ]
+               [  (- yorig periapsis)
+                  (+ yorig periapsis)  ]  ]  )  )  )  )
 
 (defn -main
    [& args]
