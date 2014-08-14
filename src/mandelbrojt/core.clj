@@ -49,7 +49,7 @@
             options-summary  ]  )  )
    (System/exit exit-code)  )
 
-(defn test-point [x y] true)
+(defn test-point [x y] java.awt.Color/WHITE)
 
 (defn render-rectangle
    [  [x-pixels y-pixels]
@@ -73,7 +73,7 @@
    ;;(render-rectangle [5 5] [[-2 +2] [-2 +2]])
    (render-rectangle
       [width height]
-      (let
+      (let  ; footnote 1
          [  minor (min width height)
             major (max width height)
             aspect (/ major minor)
@@ -94,3 +94,11 @@
    [& args]
    (alter-var-root #'*read-eval* (constantly false)) ;; work around dangerous default behaviour in Clojure
    (pprint (main-body (parse-opts args cli-options)))  )
+
+; Footnote 1:
+;
+; I realize that, out of these five intermediate symbols, only one is
+; strictly necessary (one is a "renaming", and is therefore redundant;
+; and the other three are only used once.  But I think this just makes
+; for easier reading, and it gives some clue as to what I was thinking
+; (until I can write some real documentation).
