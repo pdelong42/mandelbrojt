@@ -52,14 +52,23 @@
 (defn equation
    [  [a b]
       [x y]  ]
-   [  (+ (- (* x x) (* y y)) a)
-      (+ (* 2 x y) b)  ]  )
+   [  (+ a (* (+ x y) (- x y)))
+      (+ b (* 2 x y))  ]  )
 
 (defn orbit-seq
    [c z]
    (lazy-seq (cons z (orbit-seq c (equation c z))))  )
 
-(defn test-point [x y] java.awt.Color/WHITE)
+(defn square-seq
+   [seq]
+   (let
+      [  x (first seq)
+         xx (if x (* x x))  ]
+      (if x (lazy-seq (cons xx (square-seq (rest seq)))))  )  )
+
+(defn test-point
+   [c]
+   java.awt.Color/WHITE)
 
 (defn render-rectangle
    [  [x-pixels y-pixels]
