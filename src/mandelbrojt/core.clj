@@ -49,6 +49,16 @@
             options-summary  ]  )  )
    (System/exit exit-code)  )
 
+(defn equation
+   [  [a b]
+      [x y]  ]
+   [  (+ (- (* x x) (* y y)) a)
+      (+ (* 2 x y) b)  ]  )
+
+(defn orbit-seq
+   [c z]
+   (lazy-seq (cons z (orbit-seq c (equation c z))))  )
+
 (defn test-point [x y] java.awt.Color/WHITE)
 
 (defn render-rectangle
