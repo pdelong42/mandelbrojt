@@ -60,12 +60,12 @@
    (lazy-seq (cons z (orbit-seq c (equation c z))))  )
 
 (defn mod-squared-seq
-   [  [z & zs]  ]
-   (if z
+   [  [  [x y] & zs  ]  ]
+   (if
+      (and x y)
       (let
-         [  [x y] z
-            zzbar (+ (* x x) (* y y))  ]
-         (lazy-seq (cons zzbar (mod-squared-seq zs)))  )  )  )
+         [  zzbar (+ (* x x) (* y y))  ]
+         (lazy-seq (cons zzbar (if zs (mod-squared-seq zs))))  )  )  )
 
 (defn test-point
    [c]
