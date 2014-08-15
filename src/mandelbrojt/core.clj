@@ -67,9 +67,14 @@
          [  zzbar (+ (* x x) (* y y))  ]
          (lazy-seq (cons zzbar (if zs (mod-squared-seq zs))))  )  )  )
 
+(def maxiter 100) ; make this a command-line arg
+
 (defn test-point
    [c]
-   java.awt.Color/WHITE)
+   (if
+      (> maxiter (count (filter #(< % 4) (take maxiter (mod-squared-seq (orbit-seq c [0 0]))))))
+      java.awt.Color/WHITE
+      java.awt.Color/BLACK  )  )
 
 (defn render-rectangle
    [  [x-pixels y-pixels]
@@ -83,7 +88,7 @@
       (for
          [  x-pixel (range x-pixels)
             y-pixel (range y-pixels)  ]
-         [x-pixel y-pixel (test-point (x-real x-pixel) (y-real y-pixel))]  )  )  )
+         [x-pixel y-pixel (test-point [(x-real x-pixel) (y-real y-pixel)])]  )  )  )
 
 (defn main-body
    [  {  {:keys [width height help radius xorig yorig]} :options
