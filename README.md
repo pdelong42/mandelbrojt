@@ -37,6 +37,21 @@ Benoit Mandelbrot: his uncle's name was Szolem Mandelbrojt.  Perfect.
 A valid and appropriate alternate spelling of the family name (if I
 wanted to be obscure, I would've named it "Szolem", but I don't).
 
+Running
+=======
+
+Assuming you ran `lein uberjar` first, here is an example of how to
+run it:
+
+    java -server -jar target/mandelbrojt-0.1.0-SNAPSHOT-standalone.jar -f 1440x900.pbm -w 1440 -h 900
+
+The `-server` option is needed for larger resolution output, because
+the default profile the JVM picks doesn't allocate enough heap
+(alternatively, you can allocate the amount of heap you think you'll
+need).  For smaller resolutions, you can omit this.  I'm hoping to
+make this code more memory efficient later - this is just a first
+pass.
+
 Progress
 ========
 
