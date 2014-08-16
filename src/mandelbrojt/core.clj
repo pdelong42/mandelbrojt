@@ -45,7 +45,7 @@
       [  "-f"
          "--filename STRING"
          "output filename"
-         :default "-"  ]
+         :default "output.pbm"  ]
       [  "-H" "--help" "help"  ]  ]  )
 
 (defn usage
