@@ -159,9 +159,9 @@
                   [  [  (- xorig periapsis)
                         (+ xorig periapsis)  ]
                      [  (- yorig apoapsis)
-                        (+ yorig apoapsis)  ]  ]
+                        (+ yorig apoapsis)   ]  ]
                   [  [  (- xorig apoapsis)
-                        (+ xorig apoapsis)  ]
+                        (+ xorig apoapsis)   ]
                      [  (- yorig periapsis)
                         (+ yorig periapsis)  ]  ]  )  )  )  )  )  )
 
@@ -169,7 +169,7 @@
    [& args]
    ;; work around dangerous default behaviour in Clojure
    (alter-var-root #'*read-eval* (constantly false))
-   (pprint (main-body (parse-opts args cli-options)))  )
+   (main-body (parse-opts args cli-options))  )
 
 ; Footnote 1:
 ;
