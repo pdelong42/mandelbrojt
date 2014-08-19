@@ -76,15 +76,14 @@
 (defn test-point
    [maxiter c]
    (letfn
-      [  (orbit-seq [x] (lazy-seq (cons x (orbit-seq (equation c x)))))
-         (bounded [zzbar] (< zzbar 4))  ]
+      [  (orbit-seq [x] (lazy-seq (cons x (orbit-seq (equation c x)))))  ]
       (if
          (> maxiter
             (count
                (filter
-                  bounded
+                  #(< % 4)
                   (take
-                      maxiter
+                     maxiter
                      (mod-squared-seq
                         (orbit-seq [0 0])  )  )  )  )  ) ; footnote 2
          0 1  )  )  )
