@@ -52,6 +52,14 @@ need).  For smaller resolutions, you can omit this.  I'm hoping to
 make this code more memory efficient later - this is just a first
 pass.
 
+If you can't find an image viewer that understands PNM format, that's
+easily fixed with the help of the Netpbm tools:
+
+    ppmtogif < foo.pbm > foo.gif
+
+Maybe someday I'll get around to supporting output of a more modern
+and robust format (though it isn't high on my list of priorities).
+
 Progress
 ========
 
