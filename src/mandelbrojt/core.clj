@@ -137,8 +137,8 @@
    dimensions) in which the circle is inscribed, and pass that to the
    rendering routine (which only cares about rectangular areas)"
 
-   [  {  {:keys [width height maxiter radius xorig yorig filename help]} :options
-          :keys [arguments errors summary]  }  ]
+   [  {  {  :keys [  width height maxiter radius xorig yorig filename help  ]  }
+            :options :keys [  arguments errors summary  ]  }  ]
    (if help   (usage 0 summary errors))
    (if errors (usage 1 summary errors))
    (spit
@@ -158,10 +158,10 @@
                   (< width height)
                   [  [  (- xorig periapsis)
                         (+ xorig periapsis)  ]
-                     [  (- yorig apoapsis)
-                        (+ yorig apoapsis)   ]  ]
-                  [  [  (- xorig apoapsis)
-                        (+ xorig apoapsis)   ]
+                     [  (- yorig  apoapsis)
+                        (+ yorig  apoapsis)  ]  ]
+                  [  [  (- xorig  apoapsis)
+                        (+ xorig  apoapsis)  ]
                      [  (- yorig periapsis)
                         (+ yorig periapsis)  ]  ]  )  )  )  )  )  )
 
