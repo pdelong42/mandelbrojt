@@ -76,17 +76,10 @@
 (defn test-point
    [maxiter c]
    (letfn
-      [  (orbit-seq [x] (lazy-seq (cons x (orbit-seq (equation c x)))))  ]
-      (if
-         (> maxiter
-            (count
-               (filter
-                  #(< % 4)
-                  (take
-                     maxiter
-                     (mod-squared-seq
-                        (orbit-seq [0 0])  )  )  )  )  ) ; footnote 2
-         0 1  )  )  )
+      [  (orbit-seq [x] (lazy-seq (cons x (orbit-seq (equation c x)))))
+         (truncated [x] (take maxiter ((comp mod-squared-seq orbit-seq) x)))
+         (bounded?  [x] (< x 4))  ]
+      (if (> maxiter (count (filter bounded? (truncated [0 0])))) 0 1)))
 
 (defn render-rectangle
 
@@ -136,8 +129,8 @@
    dimensions) in which the circle is inscribed, and pass that to the
    rendering routine (which only cares about rectangular areas)"
 
-   [  {  {  :keys [  width height maxiter radius xorig yorig filename help  ]  }
-            :options :keys [  arguments errors summary  ]  }  ]
+   [  {  {  :keys [width height maxiter radius xorig yorig filename help]  }
+            :options :keys [arguments errors summary]  }  ]
    (if help   (usage 0 summary errors))
    (if errors (usage 1 summary errors))
    (spit
@@ -177,9 +170,3 @@
 ; and the other three are only used once.  But I think this just makes
 ; for easier reading, and it gives some clue as to what I was thinking
 ; (until I can write some real documentation).
-;
-; Footnote 2:
-;
-; I hate gratuitous indentation, and that's what this feels like to
-; me.  But I had to do it to stay under 80 characters of line length,
-; for readability.
