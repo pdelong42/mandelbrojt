@@ -91,8 +91,8 @@
 (defn render-rectangle
 
    "take a canvas of pixels, map each pixel to the given finite subset
-   of the RxR plane, and test each pixel for membership in the set;
-   return the original pixels, each associated with a color value
+   of the complex plane, and test each pixel for membership in the
+   set; return the original pixels, each associated with a color value
    based on its set membership"
 
    [  max-iterations
