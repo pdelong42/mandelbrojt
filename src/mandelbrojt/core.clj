@@ -70,8 +70,8 @@
    (+ (* x x) (* y y))  )
 
 (defn orbiter
-   [maxiter c]
-   (loop ; I hate this...
+   [maxiter partial-eval]
+   (loop
       [  iteration 0 z [0 0]  ]
       (cond
          (> (mod-square z) 4)  0
@@ -79,7 +79,7 @@
          :default
          (recur
             (inc iteration)
-            (equation c z)  )  )  )  )
+            (partial-eval z)  )  )  )  )
 
 (defn render-rectangle
 
@@ -103,8 +103,9 @@
                y-pixel (range y-pixels)  ]
             [  [  x-pixel y-pixel  ]
                (test-point
-                  [  (+ x-min (* x-pixel x-ratio))
-                     (+ y-min (* y-pixel y-ratio))  ]  )  ]  )  )  )  )
+                  (partial equation
+                     [  (+ x-min (* x-pixel x-ratio))
+                        (+ y-min (* y-pixel y-ratio))  ]  )  )  ]  )  )  )  )
 
 (defn format-as-pbm
    [  [width height] points  ]
