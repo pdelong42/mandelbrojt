@@ -62,12 +62,14 @@
 (defn equation
    [  [a b]
       [x y]  ]
-   [  (+ a (* (+ x y) (- x y)))
+   [  (+ a (* (+ x y)
+              (- x y)  )  )
       (+ b (* 2 x y))  ]  )
 
 (defn mod-square
    [  [x y]  ]
-   (+ (* x x) (* y y))  )
+   (+ (* x x)
+      (* y y)  )  )
 
 (defn orbiter
    [maxiter partial-eval]
