@@ -69,7 +69,7 @@ assumptions, and isn't really optimized at all.
 The first area that's ripe for optimization is probably the orbit
 iterating code.  It's very wasteful in that it probably keeps the
 entire sequence in memory, when all it really needs at any given time
-is the last point generated in the sequence.
+is the last point generated in the sequence. (FIXED)
 
 The next area that could use work is convergence detection.  I only
 used the simplest and most basic means of detecting whether the orbit
@@ -91,4 +91,8 @@ Lessons learned
  - In generating the PBM output, using pmap incurred may more overhead
    than using map.
 
- - and more...
+ - Implementing the orbit calculations as a lazy sequence (while sexy)
+   was way too inefficient, and unnecessarily memory-intensive,
+   because it has to keep the realized portions of the sequence around
+   in order to count the elements.  It's better to just maintain a
+   counter, and discard all but the most recent point in the orbit.
