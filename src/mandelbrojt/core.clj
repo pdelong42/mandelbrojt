@@ -114,10 +114,10 @@
          ""
          "P1"
          (str width " " height)
-         (pmap
+         (map
             (fn [y]
                (join " "
-                  (pmap
+                  (map
                      (fn [x] (str (points [x y])))
                      (range width)  )  )  )
             (range height)  )  )  )  )

@@ -84,3 +84,11 @@ than being streamed as it's generated.
 In general, I need to find ways to stream the data from one function
 to the next.  I haven't even begun trying to use the concurrency
 primitives.
+
+Lessons learned
+===============
+
+ - In generating the PBM output, using pmap incurred may more overhead
+   than using map.
+
+ - and more...
