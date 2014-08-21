@@ -65,21 +65,21 @@
    [  (+ a (* (+ x y) (- x y)))
       (+ b (* 2 x y))  ]  )
 
-(defn mod-squared-seq
-   [  [  [x y] & zs  ]  ]
-   (if
-      (and x y)
-      (let
-         [  zzbar (+ (* x x) (* y y))  ]
-         (lazy-seq (cons zzbar (if zs (mod-squared-seq zs))))  )  )  )
+(defn mod-square
+   [  [x y]  ]
+   (+ (* x x) (* y y))  )
 
 (defn test-point
    [maxiter c]
-   (letfn
-      [  (orbit-seq [x] (lazy-seq (cons x (orbit-seq (equation c x)))))
-         (truncated [x] (take maxiter ((comp mod-squared-seq orbit-seq) x)))
-         (bounded?  [x] (< x 4))  ]
-      (if (> maxiter (count (filter bounded? (truncated [0 0])))) 0 1)))
+   (loop ; I hate this...
+      [  iteration 0 z [0 0]  ]
+      (cond
+         (> (mod-square z) 4)  0
+         (> iteration maxiter) 1
+         :default
+         (recur
+            (inc iteration)
+            (equation c z)  )  )  )  )
 
 (defn render-rectangle
 
