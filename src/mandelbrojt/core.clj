@@ -95,8 +95,12 @@
       [  [x-min x-max]
          [y-min y-max]  ]  ]
    (let
-      [  x-ratio (/ (- x-max x-min) (- x-pixels 1))
-         y-ratio (/ (- y-max y-min) (- y-pixels 1))
+      [  x-ratio
+         (/ (- x-max x-min)
+            (- x-pixels 1)  )
+         y-ratio
+         (/ (- y-max y-min)
+            (- y-pixels 1)  )
          test-point (partial orbiter max-iterations)  ]
       (into
          {}
