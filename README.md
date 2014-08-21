@@ -88,8 +88,8 @@ primitives.
 Lessons learned
 ===============
 
- - In generating the PBM output, using pmap incurred may more overhead
-   than using map.
+ - In generating the PBM output, using `pmap` incurred may more
+   overhead than using `map`.
 
  - Implementing the orbit calculations as a lazy sequence (while sexy)
    was way too inefficient, and unnecessarily memory-intensive,
