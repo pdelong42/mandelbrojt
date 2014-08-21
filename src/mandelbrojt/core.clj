@@ -69,17 +69,19 @@
    [  [x y]  ]
    (+ (* x x) (* y y))  )
 
-(defn test-point
-   [maxiter c]
-   (loop ; I hate this...
-      [  iteration 0 z [0 0]  ]
-      (cond
-         (> (mod-square z) 4)  0
-         (> iteration maxiter) 1
-         :default
-         (recur
-            (inc iteration)
-            (equation c z)  )  )  )  )
+(defn orbiter
+   [maxiter]
+   (fn
+      [c]
+      (loop ; I hate this...
+         [  iteration 0 z [0 0]  ]
+         (cond
+            (> (mod-square z) 4)  0
+            (> iteration maxiter) 1
+            :default
+            (recur
+               (inc iteration)
+               (equation c z)  )  )  )  )  )
 
 (defn render-rectangle
 
@@ -94,7 +96,8 @@
          [y-min y-max]  ]  ]
    (let
       [  x-ratio (/ (- x-max x-min) (- x-pixels 1))
-         y-ratio (/ (- y-max y-min) (- y-pixels 1))  ]
+         y-ratio (/ (- y-max y-min) (- y-pixels 1))
+         test-point (orbiter max-iterations)  ]
       (into
          {}
          (for
@@ -102,7 +105,6 @@
                y-pixel (range y-pixels)  ]
             [  [  x-pixel y-pixel  ]
                (test-point
-                  max-iterations
                   [  (+ x-min (* x-pixel x-ratio))
                      (+ y-min (* y-pixel y-ratio))  ]  )  ]  )  )  )  )
 
